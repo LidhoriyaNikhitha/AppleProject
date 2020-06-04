@@ -1,0 +1,60 @@
+import java.util.*;
+public class TopItem{
+
+     public static void main(String []args){
+        ArrayList<ArrayList<String> > orders =  
+                  new ArrayList<ArrayList<String> >(4);
+		ArrayList<String> a1 = new ArrayList<String>(); 
+        a1.add("item1"); 
+        a1.add("item2"); 
+        orders.add(a1); 
+        ArrayList<String> a2 = new ArrayList<String>(); 
+        a2.add("item3");
+        orders.add(a2);
+        ArrayList<String> a3 = new ArrayList<String>(); 
+        a3.add("item2"); 
+        orders.add(a3);
+        ArrayList<String> a4 = new ArrayList<String>(); 
+        a4.add("item1"); 
+        a4.add("item2"); 
+        orders.add(a4);
+		ArrayList<Integer>[] items_list = new ArrayList[4];
+		for (int i = 0; i < 4; i++) { 
+            items_list[i] = new ArrayList<Integer>(); 
+        } 
+		for( int i=0;i<orders.size();i++)
+		{
+			for(int j=0;j<orders.get(i).size();j++)
+			{
+				int ind =Integer.parseInt(orders.get(i).get(j).substring(4))-1;
+				items_list[ind].add(i+1);
+			}
+		}
+        int m1=0;
+        int m1ind=-1;
+        int m2=0;
+        int m2ind=-1;
+		for(int i=0;i<items_list.length;i++)
+		{
+			int tlen = items_list[i].size();
+			if(tlen>m1)
+			{
+				m2=m1;
+				m2ind=m1ind;
+				m1=tlen;
+				m1ind=i;
+			}
+			else if(tlen>m2)
+			{
+				m2=tlen;
+				m2ind=i;
+			}
+			else{
+			}
+
+		}
+		System.out.println("first highest is item"+(m1ind+1)+"orders are"+items_list[m1ind]);
+		System.out.println("second highest is item"+(m2ind+1)+"orders are"+items_list[m2ind]);
+		
+     }
+}
